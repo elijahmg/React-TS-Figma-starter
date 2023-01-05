@@ -7,24 +7,26 @@ figma.ui.onmessage = msg => {
     const nodes: VectorNode[] = [];
 
     for (const node of figma.currentPage.selection) {
-      const parse = node as VectorNode;
+      const parsse = node as VectorNode;
 
       const ar = [1, 1, 1, 1, 1, 1, 1].map((v) => v * Math.random())
 
-      parse.vectorNetwork = {
-        vertices: parse.vectorNetwork.vertices.map((v) => {
-          const idx= Math.max(0, Math.floor(ar.length * Math.random()))
+      parsse.vectorNetwork = {
+        vertices: parsse.vectorNetwork.vertices.map((v) => {
+          const idx = Math.max(0, Math.floor(ar.length * Math.random()))
+
 
           return {
             ...v,
             x: v.x - (ar[idx] * msg.power),
             y: v.y + (ar[idx] * msg.power)
-          }}),
-        segments: parse.vectorNetwork.segments,
-        regions: parse.vectorNetwork.regions,
+          }
+        }),
+        segments: parsse.vectorNetwork.segments,
+        regions: parsse.vectorNetwork.regions,
       }
 
-      nodes.push(parse)
+      nodes.push(parsse)
     }
     figma.currentPage.selection = nodes;
     figma.viewport.scrollAndZoomIntoView(nodes);

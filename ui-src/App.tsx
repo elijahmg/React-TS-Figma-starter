@@ -10,7 +10,7 @@ function App() {
   const onCreate = () => {
     const count = Number(inputRef.current?.value || 0);
     parent.postMessage(
-      { pluginMessage: { type: "create-rectangles", count } },
+      { pluginMessage: { type: "create-rectangles", power: count } },
       "*"
     );
   };
